@@ -3,17 +3,11 @@ package ua.com.foxminded.anagram;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class AnagramCreatorTest {
 
-    private AnagramCreator anagramCreator;
-
-    @BeforeEach
-    void init() {
-        anagramCreator = new AnagramCreator();
-    }
+    private AnagramCreator anagramCreator = new AnagramCreator();
 
     @Test
     void shouldThrowExceptionIfTextIsNull() {
@@ -33,140 +27,133 @@ class AnagramCreatorTest {
 
     @Test
     void shouldReturnWhiteSpaceWhenSingleSpaceProvided() {
-        //Given that a user provides a text of a single space char
+        //Given
         String providedText = " ";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive the same provided text back
+        //Then
         assertEquals(providedText, actualResult);
     }
 
     @Test
     void shouldReturnSeveralWhiteSpacesWhenOnlyWhiteSpacesProvided() {
-        //Given that a user provides a text, containing White spaces only
+        //Given
         String providedText = "  ";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive the same provided text back
+        //Then
         assertEquals(providedText, actualResult);
     }
 
     @Test
     void shouldReturnSingleLetterWhenSingleLetterProvided() {
-        //Given that a user provides a single-letter text
+        //Given
         String providedText = "a";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive the same provided text back
+        //Then
         assertEquals(providedText, actualResult);
     }
 
     @Test
     void shouldReturnSuppliedWordWhenAllLettersAreSame() {
-        //Given that a user provides a text of a single repeated letter
+        //Given
         String providedText = "aaaaaa";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive the same provided text back
+        //Then
         assertEquals(providedText, actualResult);
     }
 
     @Test
     void shouldCreateAnagramWhenSingleWordProvided() {
-        //Given that a user provides a text of a single Word
+        //Given
         String providedText = "abcd";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive a properly created anagram
+        //Then
         assertEquals("dcba", actualResult);
     }
 
     @Test
     void shouldLeaveNonLetterCharactersOnTheirPlacesWhenMixedTextProvided() {
-        //Given that a user provides a text of a single Word of mixed symbols
+        //Given
         String providedText = "a1bcd";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive a properly created anagram
-        //leaving non-letter characters on their places
+        //Then
         assertEquals("d1cba", actualResult);
     }
 
     @Test
     void shouldCreateAnagramWhenSeveralWordsProvided() {
-        //Given that a user provides a text of several Words of mixed symbols
+        //Given
         String providedText = "a1bcd efg!h";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive a properly created anagram
-        //leaving non-letter characters on their places
+        //Then
         assertEquals("d1cba hgf!e", actualResult);
     }
 
     @Test
     void shouldCreateAnagramWhenMixedCaseLettersProvided() {
-        //Given that a user provides a text of several Words
-        //of mixed-case symbols and non-letter characters
+        //Given
         String providedText = "a1BCd EfG!h";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive a properly created anagram
-        //leaving non-letter characters on their places
+        //Then
         assertEquals("d1CBa hGf!E", actualResult);
     }
 
     @Test
     void shouldCreateAnagramWhenUpperCaseOnlyLettersProvided() {
-        //Given that a user provides a text of several Words
-        //of upper-case symbols and non-letter characters
+        //Given
         String providedText = "A1BCD EFG!H";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive a properly created anagram
-        //leaving non-letter characters on their places
+        //Then
         assertEquals("D1CBA HGF!E", actualResult);
     }
 
     @Test
     void shouldLeaveTheWordAsIsIfNoAlphabeticCharactersProvided() {
-        //Given that a user provides a text of non-letter characters
+        //Given
         String providedText = "1100101_+=\\]-";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive the same provided text back
+        //Then
         assertEquals(providedText, actualResult);
     }
 
     @Test
     void shouldCreateAnagramWhenLongWordProvided() {
-        //Given that a user provides a pretty long string of mixed characters
+        //Given
         String providedText = "2eeeee4444eeewddffgttgtgt4567";
 
-        //When provided text processed
+        //When
         String actualResult = anagramCreator.createAnagram(providedText);
 
-        //Then user must receive a properly created anagram
-        //leaving non-letter characters on their places
+        //Then
         assertEquals("2tgtgt4444tgffddweeeeeeee4567", actualResult);
     }
 }

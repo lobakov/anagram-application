@@ -12,13 +12,13 @@ public class AnagramCreator {
         }
         
         String[] words = text.split(" ");
-        StringJoiner anagramJoiner = new StringJoiner(" ");
+        StringJoiner joiner = new StringJoiner(" ");
 
         for (String word : words) {
             String reversedWord = reverseWord(word);
-            anagramJoiner.add(reversedWord);
+            joiner.add(reversedWord);
         }
-        return anagramJoiner.toString();
+        return joiner.toString();
     }
 
     private void validateText(String text) {
