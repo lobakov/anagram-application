@@ -6,11 +6,11 @@ public class AnagramCreator {
 
     public String createAnagram(String text) {
         validateText(text);
-        
+
         if (text.trim().isEmpty()) {
             return text;
         }
-        
+
         String[] words = text.split(" ");
         StringJoiner joiner = new StringJoiner(" ");
 
